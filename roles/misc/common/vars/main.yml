@@ -1,0 +1,7 @@
+---
+tz: 'AUS Eastern Standard Time'
+location: 12
+format: 'en-AU'
+lang: 'en-AU'
+temp_path: 'C:\Temp\'
+source_dir: '/home/jim/myagent/_work/r3/a/_erx.BUILD/drop/scripts/'

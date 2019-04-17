@@ -1,0 +1,22 @@
+---
+- name: Install .Net Framework 3.5 on Servers
+  win_feature:
+    name: NET-Framework-Features
+    include_sub_features: yes
+    state: present 
+  register: dotnet35_install
+
+- name: reboot if required 
+  win_reboot:
+  when: dotnet35_install.reboot_required
+
+- name: Install .Net Framework 4.5 on Servers
+  win_feature:
+    name: NET-Framework-45-Features
+    state: present
+    include_sub_features: yes
+  register: dotnet45_install
+
+- name: reboot if required 
+  win_reboot:
+  when: dotnet45_install.reboot_required

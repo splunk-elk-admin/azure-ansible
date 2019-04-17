@@ -1,0 +1,27 @@
+---
+- name: Set timezone to A.U.S. Eastern Time
+  win_timezone:
+    timezone: "{{ tz }}"
+
+- name: Set the region format to English Australia and copy settings to new profiles
+  win_region:
+    location: "{ location }}"
+    format: "{{ format }}"
+    copy_settings: True
+    unicode_language: "{{ lang }}"
+  register: result
+
+- win_reboot:
+  when: result.restart_required
+
+- name: Create directory structure
+  win_file:
+    path: "{{ temp_path }}"
+    state: directory  
+
+- win_copy:
+    src: "{{ source_dir }}"
+    dest: "{{ temp_path }}" 
+    remote_src: no
+    force: yes
+

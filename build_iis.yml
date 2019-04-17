@@ -1,0 +1,16 @@
+---
+# --------------------------------------------------------
+# Ansible playbook for setting up IIS in demo environment
+# --------------------------------------------------------
+- name: Configure common functions
+  hosts: all
+  gather_facts: yes
+  roles:
+  - misc/common
+# ----------------------------------------------------------------
+- name: Install IIS on the newly provisioned Azure Windows Web Servers
+  hosts: interface,mkconn,bussvc
+  gather_facts: yes 
+  roles:
+  - apps/iis
+  - apps/dotnet
